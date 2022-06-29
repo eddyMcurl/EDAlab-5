@@ -92,21 +92,34 @@ public class AVL<E extends Comparable<E>>  {
 		return node;
     }
     private Node<E> rotateSL(Node<E> node) {
-		Node<E> son = node.left;
+		Node<E> son = node.right;
 		node.right = son.left;
 		son.left = node;
 		node = son;
 		return node;
 	}
 	private Node<E> rotateSR(Node<E> node) {
-		Node<E> son = node.right;
+		Node<E> son = node.left;
 		node.left = son.right;
 		son.right = node;
 		node = son;
 		return node;
 	} 
-    public E search(E x) {
-        return null;
+    public E search(E x) throws ItemNotFound {
+        Node<E> resp = searchRec(x,this.root);
+		if(resp == null) 
+			throw new ItemNotFound("El dato "+x+" no se encuentra...");
+		return resp.data;
+    }
+    public Node<E> searchRec(E x,Node<E> actual) throws ItemNotFound {
+        if (actual == null)
+			return null;
+		else {
+			int resC = actual.data.compareTo(x);
+			if(resC < 0) return searchRec(x,actual.right);
+			else if(resC > 0) return searchRec(x,actual.left);
+			else return actual;
+		}
     }
     public void remove(E x) {	
     }
