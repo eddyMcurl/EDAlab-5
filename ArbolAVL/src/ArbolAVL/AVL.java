@@ -77,7 +77,7 @@ public class AVL<E extends Comparable<E>>  {
 		switch(son.fb) {
 		case 1 : node.fb = 0;
 				 son.fb = 0;
-				 node = rotateSL(node);
+				 node = rotateSL(node);//arreglar metodo rotate sl
 				 break;
 		case -1 : Node<E> grandson = son.left;
 				  switch(grandson.fb) {
