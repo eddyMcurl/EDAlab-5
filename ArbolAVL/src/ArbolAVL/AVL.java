@@ -91,6 +91,20 @@ public class AVL<E extends Comparable<E>>  {
 		}
 		return node;
     }
+    private Node<E> rotateSL(Node<E> node) {
+		Node<E> son = node.left;
+		node.right = son.left;
+		son.left = node;
+		node = son;
+		return node;
+	}
+	private Node<E> rotateSR(Node<E> node) {
+		Node<E> son = node.right;
+		node.left = son.right;
+		son.right = node;
+		node = son;
+		return node;
+	} 
     public E search(E x) {
         return null;
     }
